@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+	<title>GymTrack - Documentation</title>
+	<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400,600" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+	<div id="wrapper">
+		<!-- Sidebar -->
+		<div id="sidebar-wrapper">
+			<p>&mdash; Documentation &mdash;</p>
+			<ul class="sidebar-nav">
+				<li class="sidebar-brand"></li>
+				<li>
+					<a href="#main">MAIN</a>
+				</li>
+				<li>
+					<a href="#setup">INSTALLATION</a>
+				</li>
+				<li>
+					<a href="#support">SUPPORT</a>
+				</li>
+			</ul>
+		</div>
+		<!-- end of sidebar wrapper -->
+
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+			<div class="container-fluid">
+				<div class="row">
+					<div id="main" class="col-lg-12">
+						<h1>MAIN</h1>
+						<p>
+							Welcome to the help file for the installation and configuration of the web application GymTrack.
+
+							<br><br>
+
+							<b>Introduction:</b>
+							<br>
+							GymTrack is a Multi-Tenant architecture web application focused on SAAS, which allows users to manage their gyms as well as manage memberships, clients, visits, payments, and more.
+							<br><br>
+
+							<b>System requirements:</b>
+							<br>
+							Before starting the installation, make sure that your system meets the following requirements:
+							<br><br>
+							<b>Web browser:</b>
+							<br>
+							It is recommended to use the latest version of Google Chrome, Mozilla Firefox, or Safari for the best user experience.
+							<br><br>
+							<b>Operating system:</b>
+							<br>
+							GymTrack is compatible with all operating systems, including Windows, Linux, and Mac.
+							<br><br>
+							<b>Installation:</b>
+							<br>
+							Follow the steps below to install GymTrack on your system: <a
+								href="#setup">Click here</a>
+						</p>
+					</div> <!-- end of introduction -->
+
+					<div class="col-lg-12">
+						<hr>
+					</div> <!-- gray separator line -->
+
+
+					<div id="setup" class="col-lg-12">
+						<h1>INSTALLATION</h1>
+						<h3>Database</h3>
+						<p>
+							First, you need to install PostgreSQL. To do this, download the installer from the official PostgreSQL website <a href="https://www.postgresql.org/download/">https://www.postgresql.org/download/</a> and follow the installation steps.
+							After installing PostgreSQL, we will run pgAdmin, which is the database management tool for PostgreSQL. In pgAdmin, we will create a database with a name of our choice. In this case, it will be called <b>"gymtrack"</b>.
+							The username for connecting to the database will be <b>"postgres"</b> or the username created during the PostgreSQL installation, and the same goes for the password.
+						</p>
+
+						<h3>BackEnd (Server)</h3>
+						<p>
+							Now we will proceed with the installation of the server. To do this, download the installer from the official Node.js website <a href="https://nodejs.org/es/download/">https://nodejs.org/es/download/</a> and follow the installation steps.
+							After Node.js has been installed, open a terminal and run the following command:
+							<br>
+						<pre class="code-format">
+npm install
+							</pre>
+						<br>
+						After installing the dependencies, we will proceed to open the file <b>".env.example"</b> and rename it to <b>".env"</b>. Open the file and modify the database connection details, which are the most crucial ones (although there may be other variables that can be changed, these are the ones that establish the connection to the database):
+						<br><br>
+						- <b>DB_HOST</b> = <span class="code">YOUR_HOST</span>
+						<br>
+						- <b>DB_USER</b> = <span class="code">YOUR_USER</span>
+						<br>
+						- <b>DB_PASS</b> = <span class="code">YOUR_PASS</span>
+						<br>
+						- <b>DB_DATABASE</b> = <span class="code">YOUR_DATABASE</span>
+						<br><br>
+						Next, this includes the file <b>".env.example"</b>:
+						<br>
+						<pre class="code-format">
+PORT=8080
+HOST_URL=http://localhost:8080/
+APP_TITLE=
+								
+#postgresql database config - Required
+DB_HOST=
+DB_USER=
+DB_PASS=
+DB_DATABASE=
+								
+#Sendgrid details for sending email - Optional
+SENDGRID_API_KEY=
+SENDGRID_SENDER=
+								
+#Google details for google login - Optional
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+								
+#Twilio details for phone OTP login - Optional
+TWILIO_ACCOUNT_SID=
+TWILIO_AUTH_TOKEN=
+TWILIO_SENDER=
+								
+#Optional
+ACCESS_TOKEN_SECRET=
+REFRESH_TOKEN_SECRET=
+							</pre>
+						</p>
+
+						<br>
+
+						<p>
+							If you want the server to send emails, you need to create an account at <a href="https://sendgrid.com/">https://sendgrid.com/</a> and obtain an API KEY, which should be placed in the <b>".env"</b> file under the <b>"SENDGRID_API_KEY"</b> variable.
+							To send emails, you need to create a sender, which should be placed in the <b>"SENDGRID_SENDER"</b> variable.
+							<br><br>
+							The other requested data in the variables is not necessary as some functions are not yet implemented or are still in development.
+						</p>
+
+						<br>
+
+						<p>
+							Finally, once we have configured the <b>".env"</b> file, we will proceed to execute the following command in the terminal:
+							<br>
+						<pre class="code-format">
+npm start
+							</pre>
+						<br>
+						This will start the server, and you can access it using the following address: <a
+							href="http://localhost:8080/">http://localhost:8080/</a>
+						</p>
+
+						<h3>FrontEnd (Client)</h3>
+						<p>
+							In order to view the client, Angular needs to be installed. To do this, download the installer from the official Angular website <a href="https://angular.io/guide/setup-local">https://angular.io/guide/setup-local</a> and follow the installation steps.
+							<br><br>
+							After installing Angular, open a terminal and run the following command:
+							<br>
+						<pre class="code-format">
+npm install
+							</pre>
+						<br>
+						After installing the dependencies, we will proceed to open the file <b>"src/environments/environment.ts"</b> and change the server connection details, which are as follows:
+						<br>
+
+						<pre class="code-format">
+export const environment = {
+	baseUrl: 'http://localhost:4200',
+	production: true,
+	url: "http://localhost:8080/"
+};
+							</pre>
+						<br>
+						If the server port has been changed, you should also update the port in the <b>"url"</b> variable of the <b>"src/environments/environment.ts"</b> file.
+						<br><br>
+						<span class="code">*</span> <b>Note:</b> In the environments folder, there are two files, one for production and the other for development. In this case, the production file is being demonstrated.
+						</p>
+
+						<br>
+
+						<p>
+							Finally, once we have configured the <b>"src/environments/environment.ts"</b> file, we will proceed to execute the following command in the terminal:
+							<br>
+						<pre class="code-format">
+npm start
+							</pre>
+
+						<br>
+
+						This will start the client, and you can access the web page at the following address: <a
+							href="http://localhost:4200/">http://localhost:4200/</a>
+						<br><br>
+
+						<span class="code">*</span> <b>Note:</b> If the server port has been changed, you should also update the port in the <b>"url"</b> variable of the <b>"src/environments/environment.ts"</b> file.
+						<br><br>
+
+						<b>Congratulations 🥳!</b> The server and client have been successfully configured. Now you can access the web application and enjoy its features.
+					</div> <!-- end of icons -->
+
+					<div class="col-lg-12">
+						<hr>
+					</div> <!-- gray separator line -->
+
+
+					<div id="support" class="col-lg-12">
+						<h1>SUPPORT</h1>
+						<p>
+							If you need further support or have any questions, please don't hesitate to contact me via email at <a href="mailto:thomasorozcog@gmail.com">thomasorozcog@gmail.com</a>.
+							Remember, this is a help file for the installation and configuration of the web application. If you need additional assistance, feel free to reach out to me via email.
+							<br><br>
+							If you require a custom module or any additional functionality for the web application, you can contact me via email, and I will be happy to provide you with a quote for the module or feature you need.
+							I can also assist you with the installation of the web application on a server if you're not familiar with the process. Feel free to contact me via email, and I will provide you with a quote for the web application installation on a server.
+							<br><br>
+
+							<b>Thank you for your purchase!</b>
+						</p>
+					</div> <!-- end of support -->
+
+					<div class="col-lg-12">
+						<p class="footer">GymTrack &copy; 2023</p>
+					</div>
+				</div>
+			</div>
+		</div> <!-- end of page content wrapper -->
+	</div> <!-- end of wrapper -->
+
+	<!-- Scripts Libraries -->
+	<script src="js/jquery.js" type="text/javascript"></script>
+	<script src="js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!-- Custom Scripts -->
+	<script type="text/javascript">
+		<!-- Menu Toggle Script -->
+		$("#menu-toggle").click(function (e) {
+			e.preventDefault();
+			$("#wrapper").toggleClass("toggled");
+		});
+
+		/* Smooth Scrolling To Anchors  */
+		$(function () {
+			$('a[href*="#"]:not([data-toggle="tab"])').click(function () {
+				if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+					var target = $(this.hash);
+					target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+					if (target.length) {
+						$('html, body').animate({
+							scrollTop: target.offset().top
+						}, 700);
+						return false;
+					}
+				}
+			});
+		});
+	</script>
+
+</body>
+</html>
